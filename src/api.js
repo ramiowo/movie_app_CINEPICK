@@ -23,5 +23,5 @@ export const popular = () => fetchData("movie/popular?");
 export const topRated = () => fetchData("movie/topRated?");
 export const upComming = () => fetchData("movie/upComming?");
 export const movieDetail = (id) => fetchData(`movie/${id}?`);
-export const searchMovie = () =>
+export const searchMovie = (keyword) =>
   fetchData(`search/movie?query=${keyword}&include_adult=true`);
