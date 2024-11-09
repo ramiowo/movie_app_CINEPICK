@@ -15,6 +15,10 @@ const Container = styled.header`
   display: flex;
   justify-content: space-between;
   align-items: center;
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: 10;
   @media screen and (max-width: 1024px) {
     padding: 20px ${mainStyle.tabletPadding};
   }
