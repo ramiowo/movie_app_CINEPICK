@@ -13,15 +13,17 @@ const options = {
 };
 
 const fetchData = (urlName) => {
-  return fetch(`${BASE_URL}${urlName}?language=ko-kr`, options).then((res) =>
+  return fetch(`${BASE_URL}${urlName}language=ko-kr`, options).then((res) =>
     res.json()
   );
 };
 
 export const nowPlaying = () => fetchData("movie/now_playing?");
 export const popular = () => fetchData("movie/popular?");
-export const topRated = () => fetchData("movie/topRated?");
-export const upComming = () => fetchData("movie/upComming?");
+export const topRated = () => fetchData("movie/top_rated?");
+export const upComming = () => fetchData("movie/upcoming?");
 export const movieDetail = (id) => fetchData(`movie/${id}?`);
+export const movieTrailer = (id) => fetchData(`movie/${id}/videos?`);
+export const genresMovie = () => fetchData("genre/movie/list?");
 export const searchMovie = (keyword) =>
-  fetchData(`search/movie?query=${keyword}&include_adult=true`);
+  fetchData(`search/movie?query=${keyword}&include_adult=true&`);

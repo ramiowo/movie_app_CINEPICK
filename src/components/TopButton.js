@@ -1,5 +1,3 @@
-import { faArrowUp } from "@fortawesome/free-solid-svg-icons";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { useEffect, useState } from "react";
 import styled from "styled-components";
 
@@ -20,8 +18,8 @@ const Button = styled.button`
   display: flex;
   justify-content: center;
   align-items: center;
-
   gap: 5px;
+  z-index: 5;
 `;
 
 const TopButton = () => {

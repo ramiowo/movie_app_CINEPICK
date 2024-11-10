@@ -2,11 +2,6 @@ import { Link } from "react-router-dom";
 import logo from "../img/logo.png";
 import styled from "styled-components";
 import { mainStyle } from "../GlobalStyled";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import {
-  faArrowRightToBracket,
-  faMagnifyingGlass,
-} from "@fortawesome/free-solid-svg-icons";
 
 const Container = styled.header`
   width: 100%;
@@ -23,6 +18,7 @@ const Container = styled.header`
     padding: 20px ${mainStyle.tabletPadding};
   }
   @media screen and (max-width: 650px) {
+    height: 60px;
     padding: 20px ${mainStyle.mobilePadding};
   }
 
