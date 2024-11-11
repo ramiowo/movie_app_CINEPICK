@@ -24,6 +24,7 @@ const Container = styled.header`
   }
 
   @media screen and (max-width: 430px) {
+    height: 40px;
     padding: 20px ${mainStyle.smobilePadding};
   }
 `;

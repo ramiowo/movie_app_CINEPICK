@@ -91,6 +91,7 @@ const MainWrap = styled.div`
     }
     h4 {
       font-size: 18px;
+      font-weight: 300;
       margin-top: 10px;
       margin-bottom: 5px;
       color: rgba(255, 255, 255, 0.8);

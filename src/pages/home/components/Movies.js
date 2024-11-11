@@ -31,6 +31,7 @@ const Title = styled.div`
     margin-bottom: 30px;
   }
   @media screen and (max-width: 650px) {
+    font-size: 24px;
     margin-top: 30px;
     margin-bottom: 15px;
   }
@@ -94,7 +95,7 @@ const Movies = ({ title, data, isRanked, icon }) => {
     spaceBetween: 10,
     slidesPerView: 1.6,
     breakpoints: {
-      1440: { slidesPerView: isRanked ? 3.6 : 4, spaceBetween: 16 },
+      1440: { slidesPerView: isRanked ? 3.6 : 4.5, spaceBetween: 16 },
       1024: { slidesPerView: isRanked ? 3.2 : 4, spaceBetween: 12 },
       650: { slidesPerView: isRanked ? 2.6 : 2.3, spaceBetween: 10 },
       430: { slidesPerView: isRanked ? 1.6 : 2, spaceBetween: 8 },
