@@ -12,7 +12,18 @@ const MainBanner = styled.section`
   display: flex;
   align-items: center;
   justify-content: center;
-  padding: ${mainStyle.pcPadding};
+  padding: 0 ${mainStyle.pcPadding};
+  @media screen and (max-width: 1024px) {
+    padding: 0 ${mainStyle.tabletPadding};
+  }
+  @media screen and (max-width: 650px) {
+    padding: 0 ${mainStyle.mobilePadding};
+    height: 70vh;
+  }
+
+  @media screen and (max-width: 430px) {
+    padding: 0 ${mainStyle.smobilePadding};
+  }
 `;
 
 const BackgroundImg = styled.div`
@@ -41,23 +52,42 @@ const MainWrap = styled.div`
   position: relative;
   z-index: 2;
   display: flex;
+  justify-content: flex-start;
   align-items: center;
   margin-top: 30px;
+  @media screen and (max-width: 650px) {
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    margin-top: 0;
+  }
 
   .posterImg {
-    width: 45%;
+    width: 40%;
     border-radius: 20px;
     max-width: 300px;
     margin-bottom: 20px;
   }
   .textWrap {
     width: 60%;
-    margin-left: 100px;
+    margin-left: 80px;
+    @media screen and (max-width: 650px) {
+      width: 100%;
+      margin-left: 0;
+    }
 
     h3 {
       font-size: 65px;
       font-weight: 700;
       margin-bottom: 20px;
+      @media screen and (max-width: 1024px) {
+        font-size: 45px;
+        margin-bottom: 15px;
+      }
+      @media screen and (max-width: 650px) {
+        font-size: 38px;
+      }
     }
     h4 {
       font-size: 18px;
@@ -70,11 +100,22 @@ const MainWrap = styled.div`
         font-size: 20px;
         font-weight: 600;
       }
+      @media screen and (max-width: 650px) {
+        font-size: 16px;
+      }
     }
     p {
       margin-top: 20px;
       font-size: 20px;
       opacity: 0.8;
+      line-height: 1.6;
+      @media screen and (max-width: 1024px) {
+        font-size: 18px;
+      }
+
+      @media screen and (max-width: 650px) {
+        font-size: 16px;
+      }
     }
   }
 `;
@@ -105,13 +146,7 @@ const Banner = ({ data }) => {
                 <h4>
                   평점<span>{Math.round(movie?.vote_average)}</span>
                 </h4>
-                <h4>
-                  상영시간<span> {movie?.runtime}</span>
-                </h4>
-                <h4>
-                  장르
-                  <span>{movie?.genre}</span>
-                </h4>
+
                 <p>
                   {movie?.overview.slice(0, 100) + "..." || "내용이 없습니다."}
                 </p>

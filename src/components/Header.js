@@ -2,6 +2,7 @@ import { Link } from "react-router-dom";
 import logo from "../img/logo.png";
 import styled from "styled-components";
 import { mainStyle } from "../GlobalStyled";
+import { useEffect, useRef } from "react";
 
 const Container = styled.header`
   width: 100%;
@@ -13,7 +14,7 @@ const Container = styled.header`
   position: absolute;
   top: 0;
   left: 0;
-  z-index: 10;
+  z-index: 999;
   @media screen and (max-width: 1024px) {
     padding: 20px ${mainStyle.tabletPadding};
   }
@@ -60,8 +61,28 @@ const Menu = styled.ul`
 `;
 
 const Header = () => {
+  const headerRef = useRef();
+
+  const scrollHandler = () => {
+    const pageY = window.scrollY;
+    const current = headerRef.current;
+
+    if (pageY >= 300) {
+      current.style.position = "fixed";
+      current.style.backgroundColor = "rgba(0,0,0,0.5)";
+      current.style.backdropFilter = "blur(10px)";
+    } else {
+      current.style.position = "absolute";
+      current.style.backgroundColor = "transparent";
+      current.style.backdropFilter = "blur(0px)";
+    }
+  };
+
+  useEffect(() => {
+    return window.addEventListener("scroll", scrollHandler);
+  });
   return (
-    <Container>
+    <Container ref={headerRef}>
       <Logo>
         <Link to={"/"}>
           <img src={logo} alt="Cinepick logo"></img>

@@ -14,7 +14,10 @@ import TopButton from "../../components/TopButton";
 import GenreSelector from "./components/GenreSelector";
 import useScrollTop from "../../lib/useScrollTop";
 import styled from "styled-components";
-import { FaCalendarAlt, FaFilm, FaFire, FaStar } from "react-icons/fa";
+import { PiRankingLight } from "react-icons/pi";
+import { CiPlay1 } from "react-icons/ci";
+import { BsHandThumbsUp } from "react-icons/bs";
+import { IoTimeOutline } from "react-icons/io5";
 
 const Container = styled.section`
   width: 100%;
@@ -29,13 +32,17 @@ const LineGradient = styled.div`
   background: linear-gradient(
     180deg,
     rgba(21, 21, 21, 0.1) 0%,
-    rgba(21, 21, 21, 0.6) 30%,
+    rgba(21, 21, 21, 0.8) 30%,
     rgba(21, 21, 21, 1) 60%,
-    rgba(21, 21, 21, 0.6) 70%,
-    rgba(21, 21, 21, 0.1) 102%
+
+    rgba(21, 21, 21, 0.4) 100%
   );
   filter: blur(8px);
   z-index: 10;
+  @media screen and (max-width: 650px) {
+    height: 170px;
+    top: 60%;
+  }
 `;
 
 const Home = () => {
@@ -103,25 +110,25 @@ const Home = () => {
               />
               <Movies
                 title="시네픽 Best 영화 인기순위 "
-                icon={<FaFire style={{ color: "red" }} />}
+                icon={<PiRankingLight style={{ color: "#DC5A5A" }} />}
                 data={filter(popData)}
                 isRanked={true}
               />
               <Movies
                 title="믿고 보는 시네 Pick’s 추천영화"
-                icon={<FaStar style={{ color: "yellow" }} />}
+                icon={<BsHandThumbsUp style={{ color: "#DC5A5A" }} />}
                 data={filter(topData)}
                 isRanked={false}
               />
               <Movies
                 title="Right Now! 현재 상영 영화"
                 data={filter(nowData)}
-                icon={<FaFilm />}
+                icon={<CiPlay1 style={{ color: "#DC5A5A" }} />}
                 isRanked={false}
               />
               <Movies
                 title="Comming Soon! 개봉 예정 영화"
-                icon={<FaCalendarAlt />}
+                icon={<IoTimeOutline style={{ color: "#DC5A5A" }} />}
                 data={filter(upData)}
                 isRanked={false}
               />

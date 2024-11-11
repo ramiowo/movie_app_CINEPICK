@@ -5,7 +5,7 @@ export const mainStyle = {
   pcPadding: "8%",
   tabletPadding: "40px",
   mobilePadding: "20px",
-  smobilePadding: "16px",
+  smobilePadding: "14px",
 };
 
 export const GlobalStyled = createGlobalStyle`

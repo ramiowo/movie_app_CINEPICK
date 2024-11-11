@@ -10,6 +10,9 @@ const BtnWrap = styled.div`
   width: 100%;
   overflow: hidden;
   padding: 0 ${mainStyle.pcPadding};
+  @media screen and (max-width: 650px) {
+    margin-top: 30px;
+  }
 `;
 
 // const GenreButtons = styled.div`
@@ -33,6 +36,24 @@ const GenreButton = styled.button`
   font-weight: 500;
   background-color: rgba(255, 255, 255, 0.2);
   color: #dc5a5a;
+
+  @media screen and (max-width: 1024px) {
+    width: 130px;
+    height: 55px;
+    font-size: 17px;
+  }
+
+  @media screen and (max-width: 650px) {
+    width: 120px;
+    height: 50px;
+    font-size: 16px;
+  }
+
+  @media screen and (max-width: 480px) {
+    width: 100px;
+    height: 40px;
+    font-size: 14px;
+  }
 `;
 
 const CunstomScroll = styled(Swiper)`
@@ -51,12 +72,37 @@ const GenreSelector = ({ genres, selectGenre, onSelectGenre }) => {
   return (
     <BtnWrap>
       <CunstomScroll
+        // style={{ zIndex: 20, paddingBottom: "30px" }}
+        // spaceBetween={20}
+        // slidesPerView={9}
+        // freeMode={true}
+        // modules={[Scrollbar]}
+        // scrollbar={{ draggable: true, hide: false }}
+        // breakpoints={{
+        //   1440: {
+        //     spaceBetween: 16,
+        //     slidesPerView: 7,
+        //   },
+        //   1024: { spaceBetween: 12, slidesPerView: 5 },
+        //   650: {
+        //     spaceBetween: 10,
+        //     slidesPerView: 4,
+        //   },
+        //   480: { spaceBetween: 8, slidesPerView: 3 },
+        // }}
         style={{ zIndex: 20, paddingBottom: "30px" }}
-        spaceBetween={10} // 슬라이드 사이 여백
-        slidesPerView="9" // 화면에 보이는 슬라이드 수 자동 조정
-        freeMode={true} // 드래그 모드 활성화
+        spaceBetween={20}
+        slidesPerView={3}
+        freeMode={true}
         modules={[Scrollbar]}
         scrollbar={{ draggable: true, hide: false }}
+        breakpoints={{
+          480: { slidesPerView: 3, spaceBetween: 8 },
+          650: { slidesPerView: 4, spaceBetween: 10 },
+          1024: { slidesPerView: 6, spaceBetween: 12 },
+          1440: { slidesPerView: 7, spaceBetween: 16 },
+          1900: { slidesPerView: 9, spaceBetween: 20 },
+        }}
       >
         {/* <GenreButtons> */}
         <SwiperSlide>
