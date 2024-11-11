@@ -19,7 +19,7 @@ const Button = styled.button`
   justify-content: center;
   align-items: center;
   gap: 5px;
-  z-index: 5;
+  z-index: 99;
 `;
 
 const TopButton = () => {

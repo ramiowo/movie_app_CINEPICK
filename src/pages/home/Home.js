@@ -13,6 +13,30 @@ import Movies from "./components/Movies";
 import TopButton from "../../components/TopButton";
 import GenreSelector from "./components/GenreSelector";
 import useScrollTop from "../../lib/useScrollTop";
+import styled from "styled-components";
+import { FaCalendarAlt, FaFilm, FaFire, FaStar } from "react-icons/fa";
+
+const Container = styled.section`
+  width: 100%;
+`;
+
+const LineGradient = styled.div`
+  width: 100%;
+  height: 270px;
+  position: absolute;
+  top: 75%;
+  background: rgb(21, 21, 21);
+  background: linear-gradient(
+    180deg,
+    rgba(21, 21, 21, 0.1) 0%,
+    rgba(21, 21, 21, 0.6) 30%,
+    rgba(21, 21, 21, 1) 60%,
+    rgba(21, 21, 21, 0.6) 70%,
+    rgba(21, 21, 21, 0.1) 102%
+  );
+  filter: blur(8px);
+  z-index: 10;
+`;
 
 const Home = () => {
   const [genres, setGenres] = useState([]);
@@ -57,7 +81,7 @@ const Home = () => {
     setSelectGenre(genreId);
     console.log("Selected Genre ID", genreId);
   };
-
+  console.log(nowData);
   return (
     <div>
       {isLoading ? (
@@ -69,18 +93,39 @@ const Home = () => {
           </Helmet>
 
           {nowData && (
-            <div>
+            <Container>
               <Banner data={nowData} />
+              <LineGradient />
               <GenreSelector
                 genres={genres}
                 selectGenre={selectGenre}
                 onSelectGenre={handleSelectGenre}
               />
-              <Movies title="인기영화 순위" data={filter(popData)} />
-              <Movies title="추천영화" data={filter(topData)} />
-              <Movies title="현재상영작" data={filter(nowData)} />
-              <Movies title="개봉예정작" data={filter(upData)} />
-            </div>
+              <Movies
+                title="시네픽 Best 영화 인기순위 "
+                icon={<FaFire style={{ color: "red" }} />}
+                data={filter(popData)}
+                isRanked={true}
+              />
+              <Movies
+                title="믿고 보는 시네 Pick’s 추천영화"
+                icon={<FaStar style={{ color: "yellow" }} />}
+                data={filter(topData)}
+                isRanked={false}
+              />
+              <Movies
+                title="Right Now! 현재 상영 영화"
+                data={filter(nowData)}
+                icon={<FaFilm />}
+                isRanked={false}
+              />
+              <Movies
+                title="Comming Soon! 개봉 예정 영화"
+                icon={<FaCalendarAlt />}
+                data={filter(upData)}
+                isRanked={false}
+              />
+            </Container>
           )}
           <TopButton />
         </>

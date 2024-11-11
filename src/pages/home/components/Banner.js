@@ -41,20 +41,40 @@ const MainWrap = styled.div`
   position: relative;
   z-index: 2;
   display: flex;
+  align-items: center;
+  margin-top: 30px;
 
   .posterImg {
-    max-width: 200px;
+    width: 45%;
+    border-radius: 20px;
+    max-width: 300px;
     margin-bottom: 20px;
   }
   .textWrap {
-    width: 80%;
+    width: 60%;
+    margin-left: 100px;
 
     h3 {
       font-size: 65px;
       font-weight: 700;
+      margin-bottom: 20px;
+    }
+    h4 {
+      font-size: 18px;
+      margin-top: 10px;
+      margin-bottom: 5px;
+      color: rgba(255, 255, 255, 0.8);
+      span {
+        margin-left: 8px;
+        color: rgba(255, 255, 255, 1);
+        font-size: 20px;
+        font-weight: 600;
+      }
     }
     p {
+      margin-top: 20px;
       font-size: 20px;
+      opacity: 0.8;
     }
   }
 `;
@@ -62,13 +82,14 @@ const MainWrap = styled.div`
 const Banner = ({ data }) => {
   const randomIndex = Math.floor(Math.random() * data.length);
   const randomMovie = data[randomIndex];
+
   return (
     <Swiper
       modules={[Autoplay]}
       autoplay={{ delay: 4000, disableOnInteraction: false }}
       loop={true}
     >
-      {data.map((movie, id) => (
+      {data.slice(0, 5).map((movie, id) => (
         <SwiperSlide key={id}>
           <MainBanner>
             <BackgroundImg $coverImg={movie?.backdrop_path || ""} />
@@ -81,7 +102,19 @@ const Banner = ({ data }) => {
               />
               <div className="textWrap">
                 <h3>{movie?.title || "제목이 없습니다"}</h3>
-                <p>{movie?.overview.slice(0, 100) + "..."}</p>
+                <h4>
+                  평점<span>{Math.round(movie?.vote_average)}</span>
+                </h4>
+                <h4>
+                  상영시간<span> {movie?.runtime}</span>
+                </h4>
+                <h4>
+                  장르
+                  <span>{movie?.genre}</span>
+                </h4>
+                <p>
+                  {movie?.overview.slice(0, 100) + "..." || "내용이 없습니다."}
+                </p>
               </div>
             </MainWrap>
           </MainBanner>
