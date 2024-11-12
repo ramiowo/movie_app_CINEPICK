@@ -13,12 +13,13 @@ const Copyright = styled.p`
 `;
 
 const Footer = () => {
-  return;
-  <FooterContainer>
-    <Copyright>
-      &copy; {new Date().getFullYear()} CINEPICK. All rights reserved.
-    </Copyright>
-  </FooterContainer>;
+  return (
+    <FooterContainer>
+      <Copyright>
+        &copy; {new Date().getFullYear()} CINEPICK. All rights reserved.
+      </Copyright>
+    </FooterContainer>
+  );
 };
 
 export default Footer;

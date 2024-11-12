@@ -135,8 +135,8 @@ const Banner = ({ data }) => {
     window.addEventListener("resize", moSliceLength);
     return () => window.removeEventListener("resize", moSliceLength);
   }, []);
-  const randomIndex = Math.floor(Math.random() * data.length);
-  const randomMovie = data[randomIndex];
+  // const randomIndex = Math.floor(Math.random() * data.length);
+  // const randomMovie = data[randomIndex];
 
   return (
     <Swiper

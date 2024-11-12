@@ -21,6 +21,7 @@ import { IoTimeOutline } from "react-icons/io5";
 
 const Container = styled.section`
   width: 100%;
+  margin-bottom: 40px;
 `;
 
 const LineGradient = styled.div`

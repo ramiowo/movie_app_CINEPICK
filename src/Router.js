@@ -5,7 +5,6 @@ import Search from "./pages/search/Search";
 import Header from "./components/Header";
 import Footer from "./components/Footer";
 import PageNotFound from "./pages/PageNotFound";
-import Login from "./pages/login/Login";
 
 const Router = () => {
   return (
@@ -15,7 +14,6 @@ const Router = () => {
         <Route path="/" element={<Home />}></Route>
         <Route path="/search" element={<Search />}></Route>
         <Route path="/detail/:id" element={<Detail />}></Route>
-        <Route path="/login" element={<Login />}></Route>
         <Route path="/*" element={<PageNotFound />}></Route>
       </Routes>
       <Footer />

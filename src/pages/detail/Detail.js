@@ -12,14 +12,17 @@ import { SlClose } from "react-icons/sl";
 import { GoArrowLeft } from "react-icons/go";
 
 const Container = styled.section`
+  width: 100%;
+  height: 100%;
   display: flex;
   align-items: center;
+  margin-top: 80px;
   /* justify-content: center; */
   @media screen and (max-width: 1440px) {
-    margin-top: 100px;
+    margin-top: 160px;
   }
   @media screen and (max-width: 1024px) {
-    margin-top: 120px;
+    margin-top: 150px;
   }
   @media screen and (max-width: 650px) {
     margin-top: 40px;
@@ -34,9 +37,12 @@ const BackgroundImg = styled.div`
   top: 0;
   left: 0;
   width: 100%;
-  height: 100vh;
+  height: 100%;
+  min-height: 100vh;
   background: url(${BANNER_URL}${(props) => props.$coverImg}) no-repeat center /
     cover;
+
+  object-fit: cover;
   filter: blur(20px);
   z-index: -10;
 `;
@@ -45,25 +51,30 @@ const Overlay = styled.div`
   top: 0;
   left: 0;
   width: 100%;
-  height: 100vh;
+  height: 100%;
   background-color: rgba(0, 0, 0, 0.4);
   z-index: -5;
 `;
 
 const BgBlur = styled.div`
   width: 100%;
-  height: 70vh;
+  height: 90vh;
   background-color: rgba(0, 0, 0, 0.4);
   position: absolute;
   left: 0;
-  top: 16%;
+  top: 22%;
   z-index: -3;
   border-top-right-radius: 30px;
   @media screen and (max-width: 1440px) {
     /* top: 14%; */
   }
+  @media screen and (max-width: 1024px) {
+    height: 100vh;
+  }
   @media screen and (max-width: 650px) {
-    top: 36%;
+    height: 100vh;
+
+    top: 28%;
   }
 `;
 
@@ -97,7 +108,7 @@ const Poster = styled.div`
   background-position: center;
   border-radius: 20px;
   @media screen and (max-width: 1440px) {
-    max-width: 400px;
+    max-width: 340px;
   }
 
   @media screen and (max-width: 1024px) {
@@ -131,11 +142,11 @@ const TitleWrap = styled.section`
     font-weight: 700;
     margin-bottom: 40px;
     @media screen and (max-width: 1440px) {
-      font-size: 52px;
+      font-size: 46px;
     }
 
     @media screen and (max-width: 1024px) {
-      font-size: 48px;
+      font-size: 44px;
     }
 
     @media screen and (max-width: 650px) {

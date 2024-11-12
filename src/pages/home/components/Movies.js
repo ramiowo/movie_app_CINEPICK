@@ -42,7 +42,9 @@ const Title = styled.div`
     margin-bottom: 20px;
   }
 `;
-const Con = styled.div`
+const Con = styled.div.withConfig({
+  shouldForwardProp: (prop) => prop !== "isRanked",
+})`
   width: 100%;
   overflow: hidden;
   display: flex;

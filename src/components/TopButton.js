@@ -41,7 +41,7 @@ const TopButton = () => {
     });
   };
 
-  return <Button onClick={handleScrollToTop}>Top</Button>;
+  return viewButton && <Button onClick={handleScrollToTop}>Top</Button>;
 };
 
 export default TopButton;

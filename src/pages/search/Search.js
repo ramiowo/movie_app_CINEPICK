@@ -103,11 +103,7 @@ const NoResults = styled.p`
 `;
 
 const Search = () => {
-  const {
-    register,
-    handleSubmit,
-    formState: { errors },
-  } = useForm();
+  const { register, handleSubmit } = useForm();
 
   const [term, setTerm] = useState([]);
   const [isSearching, setIsSearching] = useState(false);
