@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import useScrollTop from "../../lib/useScrollTop";
 import { movieDetail, movieTrailer } from "../../api";
 import Loading from "../../components/Loading";
@@ -9,10 +9,20 @@ import styled from "styled-components";
 import { BANNER_URL, NO_IMG, POSTER_URL } from "../../constant/imgUrl";
 import { FaPlay } from "react-icons/fa";
 import { SlClose } from "react-icons/sl";
+import { GoArrowLeft } from "react-icons/go";
 
 const Container = styled.section`
   display: flex;
+  align-items: center;
+  /* justify-content: center; */
+  @media screen and (max-width: 1440px) {
+    margin-top: 100px;
+  }
+  @media screen and (max-width: 1024px) {
+    margin-top: 120px;
+  }
   @media screen and (max-width: 650px) {
+    margin-top: 40px;
     flex-direction: column;
     align-items: center;
   }
@@ -49,8 +59,33 @@ const BgBlur = styled.div`
   top: 16%;
   z-index: -3;
   border-top-right-radius: 30px;
+  @media screen and (max-width: 1440px) {
+    /* top: 14%; */
+  }
   @media screen and (max-width: 650px) {
-    top: 40%;
+    top: 36%;
+  }
+`;
+
+// const MainWrap = styled.div`
+//   display: flex;
+// `;
+
+const BackButton = styled.button`
+  display: none;
+
+  @media screen and (max-width: 650px) {
+    all: unset;
+    opacity: 0.8;
+    box-sizing: border-box;
+    display: block;
+    font-size: 23px;
+    display: flex;
+    align-items: center;
+    span {
+      margin-left: 5px;
+      font-size: 18px;
+    }
   }
 `;
 
@@ -82,7 +117,7 @@ const TitleWrap = styled.section`
   flex-direction: column;
   align-items: flex-start;
   justify-content: center;
-  width: 60%;
+  width: 45%;
   margin-left: 5%;
   @media screen and (max-width: 650px) {
     margin-top: 20px;
@@ -96,7 +131,7 @@ const TitleWrap = styled.section`
     font-weight: 700;
     margin-bottom: 40px;
     @media screen and (max-width: 1440px) {
-      font-size: 56px;
+      font-size: 52px;
     }
 
     @media screen and (max-width: 1024px) {
@@ -104,12 +139,13 @@ const TitleWrap = styled.section`
     }
 
     @media screen and (max-width: 650px) {
-      margin-bottom: 15px;
+      margin-top: 30px;
+      margin-bottom: 20px;
       font-size: 36px;
     }
 
     @media screen and (max-width: 430px) {
-      margin-bottom: 10px;
+      /* margin-bottom: 10px; */
       font-size: 28px;
     }
   }
@@ -118,17 +154,40 @@ const TitleWrap = styled.section`
     color: rgba(255, 255, 255, 0.8);
     font-weight: 300;
     margin-bottom: 10px;
+    @media screen and (max-width: 1024px) {
+      font-size: 16px;
+    }
+
+    @media screen and (max-width: 650px) {
+      font-size: 16px;
+    }
+
+    @media screen and (max-width: 430px) {
+      font-size: 14px;
+    }
     span {
       margin-left: 10px;
       font-size: 22px;
       color: #fff;
       opacity: 0.9;
+      font-weight: 400;
+      @media screen and (max-width: 1024px) {
+        font-size: 16px;
+      }
+
+      @media screen and (max-width: 650px) {
+        font-size: 16px;
+      }
+
+      @media screen and (max-width: 430px) {
+        font-size: 14px;
+      }
     }
   }
   ul {
     max-width: 600px;
     display: flex;
-    font-size: 18px;
+
     li {
       display: flex;
       align-items: center;
@@ -138,12 +197,47 @@ const TitleWrap = styled.section`
       background-color: rgba(201, 64, 64, 0.4);
       border-radius: 20px;
       margin: 10px 8px 20px 0;
+      font-size: 18px;
+
+      @media screen and (max-width: 1024px) {
+        width: 80px;
+        height: 30px;
+        font-size: 16px;
+      }
+
+      @media screen and (max-width: 650px) {
+        font-size: 16px;
+      }
+
+      @media screen and (max-width: 430px) {
+        width: 70px;
+        height: 30px;
+        font-size: 14px;
+      }
     }
   }
   p {
     font-size: 20px;
+    font-weight: 300;
     opacity: 0.8;
     line-height: 1.6;
+    margin-top: 10px;
+    @media screen and (max-width: 1440px) {
+      font-size: 18px;
+    }
+
+    @media screen and (max-width: 1024px) {
+      font-size: 16px;
+    }
+
+    @media screen and (max-width: 650px) {
+      margin-top: 15px;
+      font-size: 16px;
+    }
+
+    @media screen and (max-width: 430px) {
+      font-size: 16px;
+    }
   }
 `;
 
@@ -161,6 +255,25 @@ const Button = styled.button`
   align-items: center;
   justify-content: center;
   cursor: pointer;
+  @media screen and (max-width: 1440px) {
+    margin-top: 30px;
+    width: 160px;
+    height: 60px;
+    font-size: 18px;
+  }
+
+  @media screen and (max-width: 1024px) {
+    width: 140px;
+    height: 50px;
+    font-size: 16px;
+  }
+
+  @media screen and (max-width: 650px) {
+    margin-top: 60px;
+    width: 100%;
+    height: 55px;
+    font-size: 16px;
+  }
 `;
 
 const CloseButton = styled.div`
@@ -172,18 +285,18 @@ const CloseButton = styled.div`
   cursor: pointer;
 
   @media (max-width: 1440px) {
-    font-size: 28px;
-    top: -25px;
+    font-size: 30px;
+    top: -45px;
   }
 
   @media (max-width: 1024px) {
-    font-size: 26px;
-    top: -20px;
+    font-size: 28px;
+    top: -40px;
   }
 
   @media (max-width: 650px) {
     font-size: 24px;
-    top: -15px;
+    top: -30px;
   }
 
   @media (max-width: 430px) {
@@ -249,6 +362,7 @@ const Iframe = styled.iframe`
 `;
 
 const Detail = () => {
+  const nav = useNavigate();
   const { id } = useParams();
   const [data, setData] = useState();
   const [trailerUrl, setTrailerUrl] = useState(null);
@@ -294,10 +408,16 @@ const Detail = () => {
           <PageTitle title={data?.title} />
 
           <Wrapper>
+            <BackButton onClick={() => nav(-1)}>
+              <GoArrowLeft />
+              <span>Back</span>
+            </BackButton>
             <Container>
               <BackgroundImg $coverImg={data?.backdrop_path || ""} />
               <Overlay />
               <BgBlur />
+              {/* <MainWrap> */}
+
               <Poster
                 style={{
                   background: `url(${
@@ -309,10 +429,10 @@ const Detail = () => {
                 <h3>{data.title}</h3>
                 <h4>
                   평점
-                  <span> {Math.round(data.vote_average)} </span>
+                  <span> {Math.round(data.vote_average)} </span>점
                 </h4>
                 <h4>
-                  상영시간<span> {data.runtime} 분 </span>
+                  상영시간<span> {data.runtime} </span>분
                 </h4>
                 <h4>
                   개봉일<span> {data.release_date} </span>
@@ -325,10 +445,11 @@ const Detail = () => {
                 </ul>
                 <p>{data.overview}</p>
                 <Button onClick={handleTrailerButton}>
-                  <FaPlay style={{ marginRight: "7px", fontSize: "24px" }} />
+                  <FaPlay style={{ marginRight: "7px", fontSize: "16px" }} />
                   <span>예고편 보기</span>
                 </Button>
               </TitleWrap>
+              {/* </MainWrap> */}
             </Container>
           </Wrapper>
 

@@ -4,6 +4,8 @@ import { Autoplay } from "swiper/modules";
 import { Swiper, SwiperSlide } from "swiper/react";
 import "swiper/css";
 import { mainStyle } from "../../../GlobalStyled";
+import { useEffect, useState } from "react";
+import { Link } from "react-router-dom";
 
 const MainBanner = styled.section`
   height: 90vh;
@@ -106,11 +108,12 @@ const MainWrap = styled.div`
       }
     }
     p {
-      margin-top: 20px;
+      margin-top: 60px;
       font-size: 20px;
       opacity: 0.8;
       line-height: 1.6;
       @media screen and (max-width: 1024px) {
+        margin-top: 40px;
         font-size: 18px;
       }
 
@@ -122,6 +125,16 @@ const MainWrap = styled.div`
 `;
 
 const Banner = ({ data }) => {
+  const [sliceLength, setSliceLength] = useState(
+    window.innerWidth <= 650 ? 60 : 100
+  );
+
+  useEffect(() => {
+    const moSliceLength = () =>
+      setSliceLength(window.innerWidth <= 650 ? 60 : 100);
+    window.addEventListener("resize", moSliceLength);
+    return () => window.removeEventListener("resize", moSliceLength);
+  }, []);
   const randomIndex = Math.floor(Math.random() * data.length);
   const randomMovie = data[randomIndex];
 
@@ -133,27 +146,27 @@ const Banner = ({ data }) => {
     >
       {data.slice(0, 5).map((movie, id) => (
         <SwiperSlide key={id}>
-          <MainBanner>
-            <BackgroundImg $coverImg={movie?.backdrop_path || ""} />
-            <Overlay />
-            <MainWrap>
-              <img
-                className="posterImg"
-                src={`${POSTER_URL}${movie?.poster_path}`}
-                alt={movie?.title}
-              />
-              <div className="textWrap">
-                <h3>{movie?.title || "제목이 없습니다"}</h3>
-                <h4>
-                  평점<span>{Math.round(movie?.vote_average)}</span>
-                </h4>
+          <Link to={`/detail/${movie.id}`}>
+            <MainBanner>
+              <BackgroundImg $coverImg={movie?.backdrop_path || ""} />
+              <Overlay />
+              <MainWrap>
+                <img
+                  className="posterImg"
+                  src={`${POSTER_URL}${movie?.poster_path}`}
+                  alt={movie?.title}
+                />
+                <div className="textWrap">
+                  <h3>{movie?.title || "제목이 없습니다"}</h3>
 
-                <p>
-                  {movie?.overview.slice(0, 100) + "..." || "내용이 없습니다."}
-                </p>
-              </div>
-            </MainWrap>
-          </MainBanner>
+                  <p>
+                    {movie?.overview.slice(0, sliceLength) + "..." ||
+                      "내용이 없습니다."}
+                  </p>
+                </div>
+              </MainWrap>
+            </MainBanner>
+          </Link>
         </SwiperSlide>
       ))}
     </Swiper>

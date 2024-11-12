@@ -47,17 +47,21 @@ const ConWrap = styled.div`
   }
 
   @media (max-width: 430px) {
-    grid-template-columns: 1fr;
+    grid-template-columns: repeat(2, 1fr);
+    column-gap: 10px;
     row-gap: 20px;
   }
 `;
 const Con = styled.div`
-  height: 415px;
+  max-width: 310px;
+  aspect-ratio: 2 / 3;
+  width: 100%;
+  object-fit: cover;
   a {
     color: white;
   }
   h3 {
-    margin-top: 3px;
+    margin-top: 10px;
     font-size: 18px;
     @media (max-width: 650px) {
       font-size: 16px;
@@ -73,6 +77,13 @@ const Con = styled.div`
     object-fit: cover;
     border-radius: 20px;
   }
+`;
+
+const ResultText = styled.div`
+  font-size: 24px;
+  text-align: center;
+  margin: 30px 0;
+  opacity: 0.8;
 `;
 
 const NoResults = styled.p`
@@ -100,9 +111,11 @@ const Search = () => {
 
   const [term, setTerm] = useState([]);
   const [isSearching, setIsSearching] = useState(false);
+  const [searchKeyword, setSearchKeyword] = useState();
 
   const onSearch = async (data) => {
     const { search: keyword } = data;
+    setSearchKeyword(keyword);
     setIsSearching(true);
 
     try {
@@ -135,6 +148,12 @@ const Search = () => {
         {!isSearching && term.length === 0 && (
           <NoResults>검색 결과가 없습니다.</NoResults>
         )}
+        {!isSearching && term.length > 0 && (
+          <ResultText>
+            검색하신 "{searchKeyword}" 에 대한 결과입니다.
+          </ResultText>
+        )}
+
         {term && (
           <ConWrap>
             {term.map((data) => (

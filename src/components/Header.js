@@ -24,7 +24,6 @@ const Container = styled.header`
   }
 
   @media screen and (max-width: 430px) {
-    height: 40px;
     padding: 20px ${mainStyle.smobilePadding};
   }
 `;
@@ -93,9 +92,6 @@ const Header = () => {
       <Menu>
         <li>
           <Link to={"/search"}>SEARCH</Link>
-        </li>
-        <li>
-          <Link to={"/login"}>LOGIN</Link>
         </li>
       </Menu>
     </Container>

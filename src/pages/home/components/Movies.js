@@ -25,6 +25,7 @@ const Title = styled.div`
   display: flex;
   align-items: center;
   gap: 10px;
+  z-index: 20;
   /* justify-content: center; */
   @media screen and (max-width: 1024px) {
     margin-top: 60px;
@@ -32,8 +33,13 @@ const Title = styled.div`
   }
   @media screen and (max-width: 650px) {
     font-size: 24px;
-    margin-top: 30px;
-    margin-bottom: 15px;
+    margin-top: 40px;
+    margin-bottom: 20px;
+  }
+  @media screen and (max-width: 430px) {
+    font-size: 20px;
+    margin-top: 40px;
+    margin-bottom: 20px;
   }
 `;
 const Con = styled.div`
@@ -48,6 +54,12 @@ const Con = styled.div`
     width: 100%;
     object-fit: cover;
     border-radius: 20px;
+    @media screen and (max-width: 650px) {
+      max-width: 210px;
+    }
+    @media screen and (max-width: 430px) {
+      max-width: 190px;
+    }
   }
 
   ${({ isRanked }) =>
@@ -55,6 +67,9 @@ const Con = styled.div`
     css`
       margin-bottom: 20px; /* 간격을 추가 */
       padding-left: 80px; /* 패딩을 추가하여 간격을 조절 */
+      @media screen and (max-width: 430px) {
+        padding-left: 40px;
+      }
     `}
 `;
 
@@ -83,8 +98,9 @@ const Rank = styled.div`
   }
   @media screen and (max-width: 430px) {
     -webkit-text-stroke: 2px rgba(255, 255, 255, 0.6);
-    font-size: 60px;
-    left: 40px;
+    font-size: 100px;
+    left: 5px;
+    bottom: 0px;
   }
 `;
 
@@ -92,13 +108,13 @@ const Movies = ({ title, data, isRanked, icon }) => {
   const randomData = data ? [...data].sort(() => Math.random() - 0.5) : [];
 
   const params = {
-    spaceBetween: 10,
-    slidesPerView: 1.6,
+    spaceBetween: 5,
+    slidesPerView: 1.8,
     breakpoints: {
       1440: { slidesPerView: isRanked ? 3.6 : 4.5, spaceBetween: 16 },
       1024: { slidesPerView: isRanked ? 3.2 : 4, spaceBetween: 12 },
       650: { slidesPerView: isRanked ? 2.6 : 2.3, spaceBetween: 10 },
-      430: { slidesPerView: isRanked ? 1.6 : 2, spaceBetween: 8 },
+      430: { slidesPerView: isRanked ? 1.8 : 2, spaceBetween: 8 },
     },
   };
 

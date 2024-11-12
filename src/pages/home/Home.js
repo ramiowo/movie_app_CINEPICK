@@ -41,7 +41,7 @@ const LineGradient = styled.div`
   z-index: 10;
   @media screen and (max-width: 650px) {
     height: 170px;
-    top: 60%;
+    top: 65%;
   }
 `;
 
