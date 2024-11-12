@@ -1,0 +1,13 @@
+{
+  "files": {
+    "main.css": "/movie_app_CINEPICK/static/css/main.a560dfb6.css",
+    "main.js": "/movie_app_CINEPICK/static/js/main.df1de1b8.js",
+    "index.html": "/movie_app_CINEPICK/index.html",
+    "main.a560dfb6.css.map": "/movie_app_CINEPICK/static/css/main.a560dfb6.css.map",
+    "main.df1de1b8.js.map": "/movie_app_CINEPICK/static/js/main.df1de1b8.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.a560dfb6.css",
+    "static/js/main.df1de1b8.js"
+  ]
+}
